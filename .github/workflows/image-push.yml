@@ -44,7 +44,6 @@ jobs:
 #        run: ./gradlew bootJar
       - name: Build with tests
         run: ./gradlew build
-        working-directory: ./platform
       - name: Rename and move JAR file
         run: mv build/libs/*.jar app.jar
       - name: Docker Hub 로그인
