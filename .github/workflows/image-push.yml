@@ -41,16 +41,13 @@ jobs:
           distribution: 'temurin'
       - name: Grant execute permission for Gradle Wrapper
         run: chmod +x ./gradlew
-        working-directory: ./platform
       - name: Build JAR file
         run: ./gradlew bootJar
-        working-directory: ./platform
       #      - name: Build with tests
       #        run: ./gradlew build
       #        working-directory: ./platform
       - name: Rename and move JAR file
         run: mv build/libs/*.jar app.jar
-        working-directory: ./platform
       - name: Docker Hub 로그인
         uses: docker/login-action@v2
         with:
