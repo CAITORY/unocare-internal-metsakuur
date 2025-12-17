@@ -9,7 +9,6 @@ import kr.co.unocare.internal_metsakuur.response.MetsakuurResponse
 import kr.co.unocare.internal_metsakuur.response.MetsakuurResponse__EzResponse
 import org.slf4j.LoggerFactory
 import org.springframework.http.MediaType
-import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -26,7 +25,7 @@ class MetsakuurHttp(
     private val log = LoggerFactory.getLogger(javaClass)
 
     @Operation(
-        summary = "내 계정 정보 확인",
+        summary = "메사쿠어 얼굴 요청",
         description = "",
     )
     @PostMapping(
