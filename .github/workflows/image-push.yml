@@ -40,11 +40,11 @@ jobs:
           distribution: 'temurin'
       - name: Grant execute permission for Gradle Wrapper
         run: chmod +x ./gradlew
-      - name: Build JAR file
-        run: ./gradlew bootJar
-      #      - name: Build with tests
-      #        run: ./gradlew build
-      #        working-directory: ./platform
+#      - name: Build JAR file
+#        run: ./gradlew bootJar
+      - name: Build with tests
+        run: ./gradlew build
+        working-directory: ./platform
       - name: Rename and move JAR file
         run: mv build/libs/*.jar app.jar
       - name: Docker Hub 로그인
