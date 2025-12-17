@@ -1,5 +1,7 @@
 package kr.co.unocare.internal_metsakuur.http
 
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.tags.Tag
 import kr.co.unocare.internal_metsakuur.request.MetsakuurRequest
 import kr.co.unocare.internal_metsakuur.request.MetsakuurSVCNAME
 import kr.co.unocare.internal_metsakuur.response.MetsakuurCode
@@ -10,19 +12,26 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.RestController
 import tools.jackson.databind.ObjectMapper
 
 
-@Controller
+@Tag(name = "메사쿠어")
+@RestController
 @RequestMapping("/uface_api/face/common")
 class MetsakuurHttp(
     private val objectMapper: ObjectMapper,
 ) {
+    @Operation(
+        summary = "내 계정 정보 확인",
+        description = "",
+    )
     @PostMapping(
         "/json",
         consumes = [MediaType.APPLICATION_FORM_URLENCODED_VALUE],
     )
     fun handle(@RequestParam("data") data: String): MetsakuurResponse {
+        println(data);
         val request: MetsakuurRequest =
             objectMapper.readValue(data, MetsakuurRequest::class.java)
 
