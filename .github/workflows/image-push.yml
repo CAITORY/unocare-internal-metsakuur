@@ -55,6 +55,8 @@ jobs:
       - name: 빌드 앤 푸시
         uses: docker/build-push-action@v3
         with:
+          file: Dockerfile
+          context: .
           push: true
           tags: |
             ghcr.io/caitory/unocare-internal-metsakuur:${{ needs.tag.outputs.tag_name }}
