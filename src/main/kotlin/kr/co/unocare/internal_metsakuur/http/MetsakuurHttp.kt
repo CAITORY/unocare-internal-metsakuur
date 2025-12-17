@@ -7,6 +7,7 @@ import kr.co.unocare.internal_metsakuur.request.MetsakuurSVCNAME
 import kr.co.unocare.internal_metsakuur.response.MetsakuurCode
 import kr.co.unocare.internal_metsakuur.response.MetsakuurResponse
 import kr.co.unocare.internal_metsakuur.response.MetsakuurResponse__EzResponse
+import org.slf4j.LoggerFactory
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.PostMapping
@@ -22,6 +23,8 @@ import tools.jackson.databind.ObjectMapper
 class MetsakuurHttp(
     private val objectMapper: ObjectMapper,
 ) {
+    private val log = LoggerFactory.getLogger(javaClass)
+
     @Operation(
         summary = "내 계정 정보 확인",
         description = "",
@@ -31,9 +34,10 @@ class MetsakuurHttp(
         consumes = [MediaType.APPLICATION_FORM_URLENCODED_VALUE],
     )
     fun handle(@RequestParam("data") data: String): MetsakuurResponse {
-        println(data);
         val request: MetsakuurRequest =
             objectMapper.readValue(data, MetsakuurRequest::class.java)
+
+        log.info("[Metsakuur] svcName={}", request.svcName)
 
         return when(request.svcName) {
             MetsakuurSVCNAME.REGIST -> {
